@@ -1,6 +1,4 @@
-<div>
-  Test123
-</div>
+
 <div
   cdkDropList
   cdkDropListOrientation="horizontal"
@@ -8,59 +6,31 @@
   (cdkDropListDropped)="drop($event)"
   [cdkDropListData]="data"
 >
-  <div *ngFor="let sw of data; let i = index">
-    <div class="box-container">
+  <div
+    *ngFor="let swGroup of data; let i = index"
+    class="group-container"
+    cdkDrag
+  >
+    <div *ngFor="let swMovie of swGroup; let j = index" class="subgroup-container">
       <div
-        id="exampleBox"
-        class="example-box"
-        cdkDrag
-        (cdkDragStarted)="dragStarted($event, i, sw.groupedIndices)"
-        (cdkDragEnded)="dragEnded($event, i, sw.groupedIndices)"
+        class="sw-movie"
       >
-        <div *cdkDragPlaceholder>
-          <!-- <div *ngFor="let childgroup of sw.groupedIndices; let j = index" class="drag-container">
-            <div class="custom-placeholder">
-              <div class="box-big-number">
-                {{childgroup + 1}}
-              </div>
-            </div>
-            <div *ngIf="j < sw.groupedIndices.length - 1" class="gap"></div>
-          </div> -->
-          <div *ngFor="let drag of draggingData; let j = index" class="drag-container">
-            <div class="custom-placeholder">
-              <div class="box-big-number">
-                {{drag.index + 1}}
-              </div>
-            </div>
-            <div *ngIf="j < draggingData.length - 1" class="gap"></div>
-          </div>
-        </div>
-        <div *cdkDragPreview>
-          <!-- <div *ngFor="let childgroup of sw.groupedIndices; let j = index" class="drag-container-top">
-            <div class="example-box">
-              <div class="box-big-number">
-                {{childgroup + 1}}
-              </div>
-            </div>
-            <div *ngIf="j < sw.groupedIndices.length - 1" class="gap"></div>
-          </div> -->
-          <div *ngFor="let drag of draggingData; let j = index" class="drag-container-top">
-            <div class="example-box">
-              <div class="box-big-number">
-                {{drag.index + 1}}
-              </div>
-            </div>
-            <div *ngIf="j < draggingData.length - 1" class="gap"></div>
-          </div>
-        </div>
         <div class="box-text-field">
-          {{sw.textField}}
+          {{swMovie.textField}}
         </div>
         <div class="box-big-number">
-          {{sw.displayIndex}}
+          {{swMovie.displayIndex}}
         </div>
       </div>
-      <div *ngIf="i < data.length - 1" class="gap"></div>
     </div>
-  </div>
+
+    <div *cdkDragPlaceholder>
+      <div *ngFor="let swMovie of swGroup; let j = index" class="drag-container">
+        <div class="custom-placeholder">
+          <div class="box-big-number">
+            {{swMovie.index + 1}}
+          </div>
+        </div>
+      </div>
+    </div>
 </div>

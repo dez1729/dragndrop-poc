@@ -1,4 +1,4 @@
-.example-box {
+.sw-movie {
   // width: 200px;
   width: 150px;
   height: 200px;
@@ -7,7 +7,7 @@
   // cursor: move;
   cursor: grab;
   // display: flex;
-  display: grid;
+  display: inline-grid;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -24,24 +24,48 @@
   // flex-basis: 0;
 }
 
+.group-container {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  background: white;
+  overflow: hidden;
+  position: relative;
+
+  border: 3px dotted #999;
+  border-radius: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+}
 
 
 .custom-placeholder {
   background: #ccc;
-  border: dotted 3px #999;
+  // border: dotted 3px #999;
   // min-height: 60px;
   // height: 100%;
   width: 150px;
   height: 200px;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-  display: grid;
+  display: inline-grid;
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  border-radius: 4px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 
-.drag-container, .drag-container-top {
+.drag-container
+// .drag-container-top
+{
   display: inline-flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -53,6 +77,8 @@
   align-items: center;
   text-align: center;
   border: 0px solid transparent;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .drag-container-top {
@@ -61,7 +87,7 @@
 
 }
 
-.example-box:active {
+.sw-movie:active {
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
@@ -94,6 +120,12 @@
 
 .gap {
   width: 10px;
+  display: inline-flex;
+}
+
+.group-gap {
+  width: 20px;
+  display: inline-flex;
 }
 
 .box-container {
@@ -111,35 +143,29 @@
   // cursor: grabbing;
 }
 
-// .cdk-drag-placeholder {
-//   opacity: 0;
-// }
-
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-// .example-box:last-child {
-//   border: none;
-// }
-// .example-box:active {
-//   cursor: grabbing;
-// }
-
-.top-container.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.top-container.cdk-drop-list-dragging .group-container:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .cdk-drop-list-dragging {
   cursor: grabbing;
-
 }
 
-// .box-container:active {
-//   cursor: grabbing;
-// }
-
 .cdk-drag-placeholder {
-  // cursor: grabbing;
   display: inline-flex;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+  border: 3px dotted #999;
+  border-radius: 5px;
+}
+
+.subgroup-container {
+  padding-left: 5px;
+  padding-right: 5px;
 }

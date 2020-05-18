@@ -14,63 +14,62 @@ export class AppComponent {
   lastClonedDraggingData = [];
 
   data = [
-    {
-      index: 0,
-      displayIndex: 1,
-      textField: "The Phantom Menace",
-      groupedIndices: [0, 1],
-    },
-    {
-      index: 1,
-      displayIndex: 2,
-      textField: "The Attack of the Clones",
-      groupedIndices: [0, 1],
-    },
-    {
-      index: 2,
-      displayIndex: 3,
-      textField: "The Revenge of the Sith",
-      groupedIndices: [2],
-    },
-    {
-      index: 3,
-      displayIndex: 4,
-      textField: "A New Hope",
-      groupedIndices: [3],
-    },
-    {
-      index: 4,
-      displayIndex: 5,
-      textField: "The Empire Strikes Back",
-      groupedIndices: [4, 5, 6],
-    },
-    {
-      index: 5,
-      displayIndex: 6,
-      textField: "The Return of the Jedi",
-      groupedIndices: [4, 5, 6],
-    },
-    {
-      index: 6,
-      displayIndex: 7,
-      textField: "The Force Awakens",
-      groupedIndices: [4, 5, 6],
-    },
-    {
-      index: 7,
-      displayIndex: 8,
-      textField: "The Last Jedi",
-      groupedIndices: [7, 8],
-    },
-    {
-      index: 8,
-      displayIndex: 9,
-      textField: "The Rise of Skywalker",
-      groupedIndices: [7, 8],
-    },
+    [
+      {
+        index: 0,
+        displayIndex: 1,
+        textField: "The Phantom Menace",
+      },
+      {
+        index: 1,
+        displayIndex: 2,
+        textField: "The Attack of the Clones",
+      },
+    ],
+    [
+      {
+        index: 2,
+        displayIndex: 3,
+        textField: "The Revenge of the Sith",
+      },
+    ],
+    [
+      {
+        index: 3,
+        displayIndex: 4,
+        textField: "A New Hope",
+      },
+    ],
+    [
+      {
+        index: 4,
+        displayIndex: 5,
+        textField: "The Empire Strikes Back",
+      },
+      {
+        index: 5,
+        displayIndex: 6,
+        textField: "The Return of the Jedi",
+      },
+      {
+        index: 6,
+        displayIndex: 7,
+        textField: "The Force Awakens",
+      },
+    ],
+    [
+      {
+        index: 7,
+        displayIndex: 8,
+        textField: "The Last Jedi",
+      },
+      {
+        index: 8,
+        displayIndex: 9,
+        textField: "The Rise of Skywalker",
+      },
+    ]
   ];
-
-  // outputData$: Observable<any> = of(this.data);
 
   constructor() {
 
@@ -79,32 +78,7 @@ export class AppComponent {
   drop(event: CdkDragDrop<any[]>) {
     console.log(event);
     // console.log(_.get(event, ['source', 'data']));
-    // moveItemInArray(this.data, event.previousIndex, event.currentIndex);
-    // this.data.splice(event.previousIndex - 1, 0);
-    // this.data.splice.apply(this.data, [event.currentIndex, 0].concat(_.concat(this.draggingData, this.lastClonedDraggingData)));
-    // this.draggingData = [];
-
-
-    this.lastClonedDraggingData = [];
+    moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 
-  dragStarted(event: CdkDragStart<any>, currentIndex: number, groupedIndices: number[]) {
-    console.log(event);
-    // this.lastClonedDraggingData = _.cloneDeep(this.data[groupedIndices[groupedIndices.length - 1]]);
-    // this.draggingData = this.data.splice(groupedIndices[0], groupedIndices.length - 1);
-    // [this.draggingData, this.data] = _.partition(this.data, v => _.includes(this.data[currentIndex].groupedIndices, v.index));
-    this.draggingData = _.filter(this.data, v => _.includes(this.data[currentIndex].groupedIndices, v.index));
-    _.remove(this.data, v => _.includes(_.filter(groupedIndices, u => !_.eq(u, currentIndex)), v.index));
-    console.log(this.draggingData);
-    console.log(this.data);
-  }
-
-  dragEnded(event: CdkDragEnd<any>, currentIndex: number, groupedIndices: number[]) {
-    console.log(event);
-    // this.data.splice.apply(this.data, [currentIndex, 0].concat(this.draggingData));
-    // this.draggingData = [];
-    console.log(this.data);
-    // document.getElementById('exampleBox').style.cursor = "default";
-    // event.source.element.nativeElement.style.cursor = "";
-  }
 }
