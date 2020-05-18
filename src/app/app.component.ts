@@ -9,6 +9,7 @@ import _ from 'lodash';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  _ = _;
   title = 'dnd-poc';
   draggingData = [];
   lastClonedDraggingData = [];
@@ -16,57 +17,57 @@ export class AppComponent {
   data = [
     [
       {
-        index: 0,
-        displayIndex: 1,
-        textField: "The Phantom Menace",
+        newIndex: 0,
+        origIndex: 0,
+        textField: "Switch Trade 1",
       },
       {
-        index: 1,
-        displayIndex: 2,
-        textField: "The Attack of the Clones",
-      },
-    ],
-    [
-      {
-        index: 2,
-        displayIndex: 3,
-        textField: "The Revenge of the Sith",
+        newIndex: 1,
+        origIndex: 1,
+        textField: "Switch Trade 1a",
       },
     ],
     [
       {
-        index: 3,
-        displayIndex: 4,
-        textField: "A New Hope",
+        newIndex: 2,
+        origIndex: 2,
+        textField: "Pro Rata Trade 1",
       },
     ],
     [
       {
-        index: 4,
-        displayIndex: 5,
-        textField: "The Empire Strikes Back",
-      },
-      {
-        index: 5,
-        displayIndex: 6,
-        textField: "The Return of the Jedi",
-      },
-      {
-        index: 6,
-        displayIndex: 7,
-        textField: "The Force Awakens",
+        newIndex: 3,
+        origIndex: 3,
+        textField: "Pro Rata Trade 2",
       },
     ],
     [
       {
-        index: 7,
-        displayIndex: 8,
-        textField: "The Last Jedi",
+        newIndex: 4,
+        origIndex: 4,
+        textField: "Cascade Trade 1",
       },
       {
-        index: 8,
-        displayIndex: 9,
-        textField: "The Rise of Skywalker",
+        newIndex: 5,
+        origIndex: 5,
+        textField: "Cascade Trade 1a",
+      },
+      {
+        newIndex: 6,
+        origIndex: 6,
+        textField: "Cascade Trade 1b",
+      },
+    ],
+    [
+      {
+        newIndex: 7,
+        origIndex: 7,
+        textField: "Switch Trade 2",
+      },
+      {
+        newIndex: 8,
+        origIndex: 8,
+        textField: "Switch Trade 2a",
       },
     ]
   ];
@@ -77,8 +78,17 @@ export class AppComponent {
 
   drop(event: CdkDragDrop<any[]>) {
     console.log(event);
-    // console.log(_.get(event, ['source', 'data']));
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
+    console.log(this.data);
+    let tradeIndex = 0;
+
+    _.forEach(this.data, groupData => {
+      _.forEach(groupData, v => {
+        tradeIndex++;
+        console.log(tradeIndex + ' -> ' + v.newIndex);
+        v.newIndex = tradeIndex;
+      });
+    });
   }
 
 }

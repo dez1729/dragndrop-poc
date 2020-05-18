@@ -7,29 +7,32 @@
   [cdkDropListData]="data"
 >
   <div
-    *ngFor="let swGroup of data; let i = index"
+    *ngFor="let tradeGroup of data; let i = index"
     class="group-container"
     cdkDrag
   >
-    <div *ngFor="let swMovie of swGroup; let j = index" class="subgroup-container">
+    <div *ngFor="let trade of tradeGroup; let j = index" class="subgroup-container">
       <div
-        class="sw-movie"
+        [ngClass]="_.gt(j, 0) ? ['trade', 'sub-trade'] : ['trade']"
       >
         <div class="box-text-field">
-          {{swMovie.textField}}
+          {{trade.textField}}
         </div>
         <div class="box-big-number">
-          {{swMovie.displayIndex}}
+          {{trade.origIndex}} -> {{trade.newIndex}}
         </div>
       </div>
     </div>
 
     <div *cdkDragPlaceholder>
-      <div *ngFor="let swMovie of swGroup; let j = index" class="drag-container">
+      <div *ngFor="let trade of tradeGroup; let j = index" class="drag-container">
         <div class="custom-placeholder">
-          <div class="box-big-number">
-            {{swMovie.index + 1}}
+          <div class="box-text-field">
+            {{trade.textField}}
           </div>
+          <!-- <div class="box-big-number">
+            {{trade.origIndex}}
+          </div> -->
         </div>
       </div>
     </div>
